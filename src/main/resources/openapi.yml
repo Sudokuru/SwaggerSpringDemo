@@ -4,7 +4,7 @@ info:
   description: Book CRUD API.
   version: 1.0.0
 servers:
-- url: /v2
+- url: http://localhost:8080/v2
 paths:
   /book:
     get:
