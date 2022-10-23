@@ -1,3 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: src/main/resources/db.changelog/changelog-1.0.yaml
