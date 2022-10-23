@@ -1,0 +1,8 @@
+services:
+  mongo:
+    container_name: Mongo-Springboot
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=mybooklist
+    ports:
+      - "27017:27017"

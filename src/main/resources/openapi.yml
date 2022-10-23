@@ -23,12 +23,12 @@ paths:
       summary: Add a Book
       operationId: addBook
       requestBody:
+        required: true
         description: Book to be added in shop
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Book'
-        required: true
       responses:
         200:
           description: Book Added
@@ -41,10 +41,12 @@ components:
   schemas:
     Book:
       type: object
+      required:
+        - title
+        - author
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
         title:
           type: string
           example: Oathbringer
