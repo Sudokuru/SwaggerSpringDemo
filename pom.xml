@@ -49,6 +49,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
@@ -115,34 +119,33 @@
 			<id>Deploy Project</id>
 			<properties>
 				<mongodb.port>27017</mongodb.port>
-				<mongodb.username>root</mongodb.username>
-				<mongodb.password>toor</mongodb.password>
 			</properties>
 			<dependencies>
-				<dependency>
-					<groupId>org.mongodb</groupId>
-					<artifactId>mongodb-jdbc</artifactId>
-					<version>2.0.0</version>
-				</dependency>
-				<dependency>
-					<groupId>org.liquibase.ext</groupId>
-					<artifactId>liquibase-mongodb</artifactId>
-					<version>4.2.1</version>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-data-mongodb</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.springframework.data</groupId>
-					<artifactId>spring-data-mongodb</artifactId>
-					<version>3.4.5</version>
-				</dependency>
-				<dependency>
-					<groupId>org.mongodb</groupId>
-					<artifactId>mongo-java-driver</artifactId>
-					<version>3.12.11</version>
-				</dependency>
+<!--				<dependency>-->
+<!--					<groupId>org.mongodb</groupId>-->
+<!--					<artifactId>mongodb-jdbc</artifactId>-->
+<!--					<version>2.0.0</version>-->
+<!--				</dependency>-->
+<!--				<dependency>-->
+<!--					<groupId>org.liquibase</groupId>-->
+<!--					<artifactId>liquibase-core</artifactId>-->
+<!--					<version>4.11.0</version>-->
+<!--				</dependency>-->
+<!--				<dependency>-->
+<!--					<groupId>org.liquibase.ext</groupId>-->
+<!--					<artifactId>liquibase-mongodb</artifactId>-->
+<!--					<version>4.11.0</version>-->
+<!--				</dependency>-->
+<!--				<dependency>-->
+<!--					<groupId>org.springframework.data</groupId>-->
+<!--					<artifactId>spring-data-mongodb</artifactId>-->
+<!--					<version>3.4.5</version>-->
+<!--				</dependency>-->
+<!--				<dependency>-->
+<!--					<groupId>org.mongodb</groupId>-->
+<!--					<artifactId>mongo-java-driver</artifactId>-->
+<!--					<version>3.12.11</version>-->
+<!--				</dependency>-->
 			</dependencies>
 			<build>
 				<plugins>
@@ -155,40 +158,78 @@
 						<artifactId>liquibase-maven-plugin</artifactId>
 						<version>4.17.0</version>
 						<configuration>
-							<propertyFile>src/main/resources/application.properties</propertyFile>
+<!--							<propertyFile>src/main/resources/application.properties</propertyFile>-->
+<!--							<propertyFile>src/main/resources/liquibase.properties</propertyFile>-->
+							<changeLogFile>src/main/resources/db.changelog/changelog-master.yaml</changeLogFile>
 							<propertyFileWillOverride>true</propertyFileWillOverride>
+							<outputChangeLogFile>src/main/resources/db/changelog</outputChangeLogFile>
+							<url>mongodb://localhost:27017/mybooklist</url>
 						</configuration>
+						<dependencies>
+<!--							<dependency>-->
+<!--								<groupId>org.mongodb</groupId>-->
+<!--								<artifactId>mongodb-jdbc</artifactId>-->
+<!--								<version>2.0.0</version>-->
+<!--							</dependency>-->
+							<dependency>
+								<groupId>org.springframework</groupId>
+								<artifactId>spring-jdbc</artifactId>
+								<version>5.3.23</version>
+							</dependency>
+<!--							<dependency>-->
+<!--								<groupId>org.mongodb</groupId>-->
+<!--								<artifactId>mongodb-driver-reactivestreams</artifactId>-->
+<!--								<version>4.7.2</version>-->
+<!--							</dependency>-->
+<!--							<dependency>-->
+<!--								<groupId>org.mongodb</groupId>-->
+<!--								<artifactId>mongo-java-driver</artifactId>-->
+<!--								<version>3.12.11</version>-->
+<!--							</dependency>-->
+							<dependency>
+								<groupId>org.liquibase.ext</groupId>
+								<artifactId>liquibase-mongodb</artifactId>
+								<version>4.17.0</version>
+							</dependency>
+<!--							<dependency>-->
+<!--								<groupId>org.springframework</groupId>-->
+<!--								<artifactId>spring-beans</artifactId>-->
+<!--								<version>4.1.7.RELEASE</version>-->
+<!--							</dependency>-->
+<!--							<dependency>-->
+<!--								<groupId>org.springframework.data</groupId>-->
+<!--								<artifactId>spring-data-jpa</artifactId>-->
+<!--								<version>1.7.3.RELEASE</version>-->
+<!--							</dependency>-->
+
+						</dependencies>
 					</plugin>
-					<plugin>
-						<groupId>io.fabric8</groupId>
-						<artifactId>docker-maven-plugin</artifactId>
-						<version>0.40.2</version>
-						<configuration>
-							<verbose>true</verbose>
-							<images>
-								<image>
-									<name>mongo</name>
-									<alias>mongo</alias>
-									<run>
-										<ports>
-											<port>${mongodb.port}:27017</port>
-										</ports>
-										<env>
-											<MONGO_INITDB_ROOT_USERNAME>${mongodb.username}</MONGO_INITDB_ROOT_USERNAME>
-											<MONGO_INITDB_ROOT_PASSWORD>${mongodb.password}</MONGO_INITDB_ROOT_PASSWORD>
-										</env>
-										<wait>
-											<log>waiting for connections on port</log>
-											<time>60000</time>
-										</wait>
-									</run>
-								</image>
-							</images>
-							<execution>
-								<goals>compile</goals>
-							</execution>
-						</configuration>
-					</plugin>
+<!--					<plugin>-->
+<!--						<groupId>io.fabric8</groupId>-->
+<!--						<artifactId>docker-maven-plugin</artifactId>-->
+<!--						<version>0.40.2</version>-->
+<!--						<configuration>-->
+<!--							<verbose>true</verbose>-->
+<!--							<images>-->
+<!--								<image>-->
+<!--									<name>mongo</name>-->
+<!--									<alias>mongo</alias>-->
+<!--									<run>-->
+<!--										<ports>-->
+<!--											<port>${mongodb.port}:27017</port>-->
+<!--										</ports>-->
+<!--										<wait>-->
+<!--											<log>waiting for connections on port</log>-->
+<!--											<time>60000</time>-->
+<!--										</wait>-->
+<!--									</run>-->
+<!--								</image>-->
+<!--							</images>-->
+<!--							<execution>-->
+<!--								<goals>compile</goals>-->
+<!--							</execution>-->
+<!--						</configuration>-->
+<!--					</plugin>-->
 				</plugins>
 			</build>
 		</profile>

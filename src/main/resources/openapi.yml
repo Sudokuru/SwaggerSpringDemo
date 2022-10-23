@@ -53,3 +53,7 @@ components:
         author:
           type: string
           example: Brandon Sanderson
+        newthing:
+          type: string
+          example: new thing
+
