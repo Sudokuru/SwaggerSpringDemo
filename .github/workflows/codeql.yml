@@ -53,10 +53,10 @@ jobs:
         # queries: security-extended,security-and-quality
 
     # Setting up the correct java JDK
-    - name: Setup Java JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: 16
+#     - name: Setup Java JDK
+#       uses: actions/setup-java@v1
+#       with:
+#         java-version: 16
         
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
