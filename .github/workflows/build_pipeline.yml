@@ -21,13 +21,14 @@ on:
     - cron: '22 0 * * 4'
 
 jobs:
-  dependency-review:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v2
+# Link here: https://github.com/actions/dependency-review-action
+#   dependency-review:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: 'Checkout Repository'
+#         uses: actions/checkout@v3
+#       - name: 'Dependency Review'
+#         uses: actions/dependency-review-action@v2
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
