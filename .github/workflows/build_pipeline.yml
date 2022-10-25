@@ -166,7 +166,7 @@ jobs:
       uses: actions/checkout@v3
       
     - name: Start Mongo Docker
-    - uses: isbang/compose-action@v1.3.2
+      uses: isbang/compose-action@v1.3.2
       with:
         compose-file: "./src/main/resources/docker-compose.yml"
         down-flags: "--volumes"
