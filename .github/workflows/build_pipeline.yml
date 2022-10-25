@@ -23,6 +23,7 @@ on:
 jobs:
 # Link here: https://github.com/actions/dependency-review-action
 #   dependency-review:
+#      name: dependency review
 #     runs-on: ubuntu-latest
 #     steps:
 #       - name: 'Checkout Repository'
@@ -30,6 +31,7 @@ jobs:
 #       - name: 'Dependency Review'
 #         uses: actions/dependency-review-action@v2
   pmd-code-scan:
+    name: pmd code scan
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
