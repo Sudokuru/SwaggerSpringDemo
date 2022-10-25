@@ -1,7 +1,7 @@
-name: Deploy
+name: Deploy Pipeline
 on:
   workflow_run:
-    workflows: ["Build"]
+    workflows: ["Build Pipeline"]
     types:
       - completed
       
