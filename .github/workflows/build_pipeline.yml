@@ -56,6 +56,7 @@ jobs:
         with:
           sarif_file: pmd-report.sarif
           
+  # This code is currently failing for some reason.         
   codacy-security-scan:
     permissions:
       contents: read # for actions/checkout to fetch code
