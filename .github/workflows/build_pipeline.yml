@@ -162,6 +162,8 @@ jobs:
       actions: read
       contents: read
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
     - name: Setup Java JDK
       uses: actions/setup-java@v1
       with:
