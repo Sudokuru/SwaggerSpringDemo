@@ -2,6 +2,7 @@ name: Deploy Pipeline
 on:
   workflow_run:
     workflows: ["Build Pipeline"]
+    branches: ["master"]
     types:
       - completed
       
