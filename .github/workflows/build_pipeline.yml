@@ -164,6 +164,14 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      
+    - name: Start Mongo Docker
+    - uses: isbang/compose-action@v1.3.2
+      with:
+        compose-file: "./src/main/resources/docker-compose.yml"
+        down-flags: "--volumes"
+        services: |
+          mongo
     - name: Setup Java JDK
       uses: actions/setup-java@v1
       with:
