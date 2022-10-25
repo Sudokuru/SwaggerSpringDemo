@@ -62,6 +62,9 @@ jobs:
   # This code is currently failing for some reason.         
   codacy-security-scan:
     name: Codacy Security Scan
+    strategy:
+      matrix:
+        scan: [true]
     permissions:
       contents: read # for actions/checkout to fetch code
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
