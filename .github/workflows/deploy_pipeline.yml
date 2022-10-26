@@ -81,7 +81,7 @@ jobs:
         SSH_HOST: ${{ secrets.OCI_HOST_SPRINGBOOT }}
         
     - name: Test Command
-      run: ssh staging 'whoami'
+      run: echo "ssh staging 'whoami'"
       
     
     
