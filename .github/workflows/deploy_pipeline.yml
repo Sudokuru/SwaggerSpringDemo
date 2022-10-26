@@ -39,14 +39,20 @@ jobs:
         echo "${{secrets.OCI_KEY_FILE}}" >> ~/.oci/gallant.thomas@outlook.com_2022-10-25T03_23_41.205Z.pem
         echo "${{secrets.VM_SSH_PUB_KEY}}" >> /home/runner/.oci/Springboot.pub
         
-    - name: Create Instance
-      if: ${{!env.INSTANCE_OCID}}
-      uses: oracle-actions/run-oci-cli-command@v1.1
-      id: create_instance
+#     - name: Create Instance
+#       if: ${{!env.INSTANCE_OCID}}
+#       uses: oracle-actions/run-oci-cli-command@v1.1
+#       id: create_instance
+#       with:
+#         command: 'oci iam availability-domain list'
+#        command: 'oci compute instance launch --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} --shape ${{secrets.VM_SHAPE}} --assign-public-ip true --display-name springboot --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} --ssh-authorized-keys-file /home/runner/oci/Springboot.pub --subnet-id ${{secrets.VM_SUBNET_OCID}} --wait-for-state RUNNING --query "data.id" --raw-output'
+  
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
       with:
-        command: 'oci iam availability-domain list'
-       # command: 'oci compute instance launch --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} --shape ${{secrets.VM_SHAPE}} --assign-public-ip true --display-name springboot --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} --ssh-authorized-keys-file /home/runner/oci/Springboot.pub --subnet-id ${{secrets.VM_SUBNET_OCID}} --wait-for-state RUNNING --query "data.id" --raw-output'
-    
+        host: ${{ secrets.OCI_HOST_SPRINGBOOT }}
+        username: ${{ secrets.OCI_USERNAME_SPRINGBOOT }}
+        script: whoami
         
     
     
