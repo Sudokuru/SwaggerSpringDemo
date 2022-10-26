@@ -78,6 +78,9 @@ jobs:
         SSH_USER: ${{ secrets.OCI_USERNAME_SPRINGBOOT }}
         SSH_KEY: ${{ secrets.OCI_KEY_SPRINGBOOT }}
         SSH_HOST: ${{ secrets.OCI_HOST_SPRINGBOOT }}
+        
+    - name: Test Command
+      run: ssh staging 'whoami'
       
     
     
