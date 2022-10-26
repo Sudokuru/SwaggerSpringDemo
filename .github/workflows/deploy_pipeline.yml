@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     name: Deploy
-    environment: Configure Oracle Springboot VM
+    environment: Oracle Springboot VM
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
