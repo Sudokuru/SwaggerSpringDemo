@@ -52,6 +52,7 @@ jobs:
       with:
         host: ${{ secrets.OCI_HOST_SPRINGBOOT }}
         username: ${{ secrets.OCI_USERNAME_SPRINGBOOT }}
+        key: ${{ secrets.OCI_KEY_SPRINGBOOT }}
         script: whoami
         
     
