@@ -42,7 +42,7 @@ jobs:
     - name: Create Instance
       if: ${{!env.INSTANCE_OCID}}
       uses: oracle-actions/run-oci-cli-command@v1.1
-      id: Create Instance
+      id: create_instance
       with:
         command: 'oci compute instance launch --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} --shape ${{secrets.VM_SHAPE}} --assign-public-ip true --display-name springboot --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} --ssh-authorized-keys-file /home/runner/oci/Springboot.pub --subnet-id ${{secrets.VM_SUBNET_OCID}} --wait-for-state RUNNING --query "data.id" --raw-output'
     
