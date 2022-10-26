@@ -75,9 +75,9 @@ jobs:
           StrictHostKeyChecking no
         END
       env:
-        SSH_USER: ${{ secrets.OCI_USERNAME_SPRINGBOOT }}
+        SSH_USER: opc
         SSH_KEY: ${{ secrets.OCI_KEY_SPRINGBOOT }}
-        SSH_HOST: ${{ secrets.OCI_HOST_SPRINGBOOT }}
+        SSH_HOST: 129.213.63.104
         
     - name: Test Command
       run: ssh staging 'whoami'
